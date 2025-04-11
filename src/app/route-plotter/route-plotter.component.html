@@ -1,0 +1,61 @@
+<div class="route-plotter-container">
+  <div class="main-content">
+    <div class="input-section">
+      <h2>Add New Route</h2>
+      <div class="input-group">
+        <input 
+          type="text" 
+          [(ngModel)]="newTrip.source" 
+          placeholder="Source" 
+          class="form-control"
+        >
+        <input 
+          type="text" 
+          [(ngModel)]="newTrip.destination" 
+          placeholder="Destination" 
+          class="form-control"
+        >
+        <button 
+          (click)="addTrip()" 
+          class="btn btn-primary"
+          [disabled]="!newTrip.source || !newTrip.destination"
+        >
+          Add Route
+        </button>
+
+        <button *ngIf="trips.length > 0" (click)="clearTrips()" class="btn btn-secondary">
+          Clear
+        </button>
+
+        <button *ngIf="trips.length > 0" (click)="toggleEdit()" class="btn btn-secondary">
+          Edit
+        </button>
+
+        <button *ngIf="trips.length > 0" (click)="toggleSettings()" class="btn btn-secondary">
+          Settings
+        </button>
+
+      </div>
+      
+    </div>
+    
+   
+
+    <div id="route-svg" class="svg-container"></div>
+  </div>
+
+  <div class="side-panel" *ngIf="showSettings || showEdit">
+
+    <app-settings 
+      *ngIf="showSettings"
+      (settingsChange)="onSettingsChange($event)"
+    ></app-settings>
+    
+    <app-edit
+      *ngIf="showEdit"
+      [trips]="trips"
+      (tripsChange)="onTripsChange($event)"
+      (applyChanges)="onApplyChanges()"
+    ></app-edit>
+  </div>
+</div> 

@@ -1,0 +1,24 @@
+<div class="edit-container">
+  <h2>Edit Routes</h2>
+  
+  <div class="routes-list">
+    <div class="route-item" *ngFor="let trip of editedTrips; let i = index">
+      <div class="route-info">
+        <span class="route-number">{{i + 1}}</span>
+        <div class="route-details">
+          <span class="source">{{trip.source}}</span>
+          <span class="arrow">→</span>
+          <span class="destination">{{trip.destination}}</span>
+        </div>
+      </div>
+      
+      <div class="route-actions">
+        <button (click)="deleteTrip(i)" class="delete-btn">X</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="actions">
+    <button (click)="onApply()" class="apply-btn">Apply</button>
+  </div>
+</div> 
