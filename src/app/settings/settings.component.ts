@@ -23,6 +23,7 @@ export interface GraphSettings {
 })
 export class SettingsComponent {
   @Output() settingsChange = new EventEmitter<GraphSettings>();
+  @Output() close = new EventEmitter<void>();
 
   settings: GraphSettings = {
     nodeSpacing: 180,
@@ -53,5 +54,9 @@ export class SettingsComponent {
   removeColor(index: number): void {
     this.settings.colors.splice(index, 1);
     this.onSettingsChange();
+  }
+
+  onClose(): void {
+    this.close.emit();
   }
 } 

@@ -65,19 +65,76 @@ export class RoutePlotterComponent implements OnInit {
   }
 
   addTrip(): void {
-    if (this.newTrip.source && this.newTrip.destination) {
-      this.trips.push({
-        source: this.newTrip.source.toLocaleLowerCase(),
-        destination: this.newTrip.destination.toLocaleLowerCase()
-      });
-      this.newTrip = { source: '', destination: '' };
-      this.updateSVG();
+    const source = this.newTrip.source.trim();
+    const destination = this.newTrip.destination.trim();
+
+    if (!source || !destination) return;
+    
+    if (source.length < 3 || destination.length < 3) {
+      alert('City names must be at least 3 letters long');
+      return;
     }
+
+    if (source.toLowerCase() === destination.toLowerCase()) {
+      alert('Source and destination cities cannot be the same');
+      return;
+    }
+
+    this.trips.push({
+      source: source.toLowerCase(),
+      destination: destination.toLowerCase()
+    });
+    
+    this.newTrip = { source: '', destination: '' };
+    this.updateSVG();
   }
 
   clearTrips(): void {
     this.trips = [];
     this.updateSVG();
+  }
+
+  downloadSVG(): void {
+    const svgElement = document.getElementById('route-svg')?.querySelector('svg');
+    if (!svgElement) return;
+
+    // Create a canvas element
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    // Set canvas dimensions
+    const width = svgElement.getAttribute('width');
+    const height = svgElement.getAttribute('height');
+    if (!width || !height) return;
+
+    canvas.width = parseInt(width);
+    canvas.height = parseInt(height);
+
+    // Create an image from the SVG
+    const img = new Image();
+    const svgData = new XMLSerializer().serializeToString(svgElement);
+    const svgBlob = new Blob([svgData], { type: 'image/svg+xml;charset=utf-8' });
+    const url = URL.createObjectURL(svgBlob);
+
+    img.onload = () => {
+      // Draw the image on the canvas
+      ctx.drawImage(img, 0, 0);
+      URL.revokeObjectURL(url);
+
+      // Convert canvas to PNG
+      const pngData = canvas.toDataURL('image/png');
+
+      // Create download link
+      const link = document.createElement('a');
+      link.href = pngData;
+      link.download = `route-graph-${new Date().toISOString().replace(/[:.]/g, '-')}.png`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    };
+
+    img.src = url;
   }
 
   onSettingsChange(newSettings: GraphSettings): void {

@@ -35,6 +35,9 @@
           Settings
         </button>
 
+        <button *ngIf="trips.length > 0" (click)="downloadSVG()" class="btn btn-success">
+          Download SVG
+        </button>
       </div>
       
     </div>
@@ -49,6 +52,7 @@
     <app-settings 
       *ngIf="showSettings"
       (settingsChange)="onSettingsChange($event)"
+      (close)="toggleSettings()"
     ></app-settings>
     
     <app-edit
@@ -56,6 +60,7 @@
       [trips]="trips"
       (tripsChange)="onTripsChange($event)"
       (applyChanges)="onApplyChanges()"
+      (close)="toggleEdit()"
     ></app-edit>
   </div>
 </div> 

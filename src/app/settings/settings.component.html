@@ -1,5 +1,5 @@
 <div class="settings-container">
-  <h3>Graph Settings</h3>
+  <h4>Graph Settings</h4>
   
   <div class="settings-group">
     <div class="setting-item">
@@ -33,8 +33,12 @@
       <div class="color-item" *ngFor="let color of settings.colors; let i = index">
         <div class="color-preview" [style.background-color]="color"></div>
         <span>{{color}}</span>
-        <button (click)="removeColor(i)">Remove</button>
+        <button (click)="removeColor(i)">X</button>
       </div>
     </div>
+  </div>
+
+  <div class="actions">
+    <button (click)="onClose()" class="close-btn">Close</button>
   </div>
 </div> 

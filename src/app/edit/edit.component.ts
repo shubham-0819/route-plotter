@@ -14,6 +14,7 @@ export class EditComponent {
   @Input() trips: Trip[] = [];
   @Output() tripsChange = new EventEmitter<Trip[]>();
   @Output() applyChanges = new EventEmitter<void>();
+  @Output() close = new EventEmitter<void>();
 
   editedTrips: Trip[] = [];
 
@@ -28,5 +29,9 @@ export class EditComponent {
   onApply(): void {
     this.tripsChange.emit([...this.editedTrips]);
     this.applyChanges.emit();
+  }
+
+  onClose(): void {
+    this.close.emit();
   }
 } 

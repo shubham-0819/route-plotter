@@ -12,48 +12,35 @@ ng serve
 
 Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
 
-## Code scaffolding
+## Features
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+RoutePlotter is a web application that allows users to create and visualize routes between different locations. Here are its main features:
 
-```bash
-ng generate component component-name
-```
+- **Route Creation**: Add routes by specifying source and destination cities
+- **Visual Representation**: Routes are displayed as an interactive SVG graph
+- **Customization**: Adjust graph settings including:
+  - Node spacing
+  - Line stroke width
+  - Circle radius
+  - Colors
+  - And more
+- **Route Management**:
+  - Edit existing routes
+  - Clear all routes
+  - Download the route visualization as an SVG image
+- **Validation**:
+  - City names must be at least 3 letters long
+  - Source and destination cannot be the same
+  - Automatic formatting of city names
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Usage
 
-```bash
-ng generate --help
-```
+1. Enter a source city in the first input field
+2. Enter a destination city in the second input field
+3. Click "Add Route" to create a new route
+4. Use the "Settings" button to customize the graph appearance
+5. Use the "Edit" button to modify existing routes
+6. Click "Download SVG" to save the visualization as an image
 
-## Building
+The application will automatically generate a visual representation of your routes, showing connections between cities with appropriate arrows and spacing.
 
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.

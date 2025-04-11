@@ -39,6 +39,7 @@
   border-radius: 4px;
   cursor: pointer;
   font-size: 14px;
+  transition: background-color 0.2s;
 }
 
 .btn-primary {
@@ -49,6 +50,15 @@
 .btn-secondary {
   background-color: #6c757d;
   color: white;
+}
+
+.btn-success {
+  background-color: #28a745;
+  color: white;
+}
+
+.btn-primary:hover, .btn-secondary:hover, .btn-success:hover {
+  opacity: 0.9;
 }
 
 .btn-primary:disabled {

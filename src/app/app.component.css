@@ -1,0 +1,11 @@
+.absolute {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    right: 0;
+}
+
+.secondary-text {
+    color: #666;
+    font-size: 12px;
+}

@@ -1,9 +1,8 @@
 .edit-container {
-  padding: 20px;
-  /* background-color: #f5f5f5; */
+  padding: 10px;
+  margin: 5px;
+  border-radius: 5px;
   border: 1px solid #ccc;
-  border-radius: 8px;
-  margin: 20px;
 }
 
 .routes-list {
@@ -14,11 +13,11 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px;
+  padding: 10px;
   background-color: white;
-  border-radius: 8px;
   margin-bottom: 10px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
 .route-info {
@@ -36,16 +35,17 @@
   align-items: center;
   justify-content: center;
   border-radius: 50%;
+  font-weight: bold;
 }
 
 .route-details {
   display: flex;
   align-items: center;
+  gap: 10px;
   font-size: 14px;
 }
 
 .source, .destination {
-  font-weight: normal;
   color: #333;
 }
 
@@ -79,19 +79,31 @@
 
 .actions {
   margin-top: 20px;
-  text-align: right;
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
 }
 
 .apply-btn {
-  padding: 10px 10px;
+  padding: 5px 10px;
   background-color: #28a745;
   color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 12px;
 }
 
-.apply-btn:hover {
-  background-color: #218838;
+.close-btn {
+  padding: 5px 10px;
+  background-color: #6c757d;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.apply-btn:hover, .close-btn:hover {
+  opacity: 0.9;
 } 

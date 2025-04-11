@@ -1,5 +1,5 @@
 <div class="edit-container">
-  <h2>Edit Routes</h2>
+  <h4>Edit Routes</h4>
   
   <div class="routes-list">
     <div class="route-item" *ngFor="let trip of editedTrips; let i = index">
@@ -19,6 +19,7 @@
   </div>
 
   <div class="actions">
+    <button (click)="onClose()" class="close-btn">Close</button>
     <button (click)="onApply()" class="apply-btn">Apply</button>
   </div>
 </div> 
