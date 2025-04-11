@@ -3,11 +3,16 @@
   gap: 20px;
   padding: 20px;
   font-family: Arial, sans-serif;
+  height: 100vh;
+  box-sizing: border-box;
 }
 
 .main-content {
   flex: 1;
   min-width: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .input-section {
@@ -18,6 +23,7 @@
   display: flex;
   gap: 10px;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .control-buttons {
@@ -31,6 +37,8 @@
   border: 1px solid #ccc;
   border-radius: 4px;
   font-size: 14px;
+  flex: 1;
+  min-width: 120px;
 }
 
 .btn {
@@ -67,12 +75,13 @@
 }
 
 .svg-container {
-  margin-top: 20px;
+  flex: 1;
   overflow-x: auto;
   border: 1px solid #ccc;
   border-radius: 4px;
   padding: 10px;
   background-color: white;
+  min-height: 0;
 }
 
 .side-panel {
@@ -90,5 +99,59 @@
 
   .side-panel {
     width: 100%;
+  }
+}
+
+/* Mobile responsive design */
+@media (max-width: 768px) {
+  .route-plotter-container {
+    padding: 10px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+  }
+
+  .input-section {
+    margin-bottom: 10px;
+  }
+
+  .input-group {
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+
+  .form-control {
+    width: 100%;
+  }
+
+  .btn {
+    width: 100%;
+    margin: 2px 0;
+  }
+
+  .svg-container {
+    flex: 1;
+    min-height: 0;
+    margin-bottom: 10px;
+  }
+
+  .side-panel {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    z-index: 1000;
+    max-height: 50vh;
+    overflow-y: auto;
   }
 } 
