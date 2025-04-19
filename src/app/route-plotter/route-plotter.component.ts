@@ -197,6 +197,7 @@ export class RoutePlotterComponent implements OnInit {
   private updateSVG(): void {
     const svgContainer = document.getElementById('route-svg');
     if (!svgContainer) return;
+    if(this.trips.length == 0) return;
 
     // Clear existing SVG
     svgContainer.innerHTML = '';
