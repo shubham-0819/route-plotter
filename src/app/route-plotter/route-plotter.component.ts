@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { SettingsComponent, GraphSettings } from '../settings/settings.component';
 import { EditComponent } from '../edit/edit.component';
+import { InfoModalComponent } from '../info-modal/info-modal.component';
 
 export interface Trip {
   source: string;
@@ -18,13 +19,14 @@ interface Connection {
 @Component({
   selector: 'app-route-plotter',
   standalone: true,
-  imports: [CommonModule, FormsModule, SettingsComponent, EditComponent],
+  imports: [CommonModule, FormsModule, SettingsComponent, EditComponent, InfoModalComponent],
   templateUrl: './route-plotter.component.html',
   styleUrls: ['./route-plotter.component.css']
 })
 export class RoutePlotterComponent implements OnInit {
   trips: Trip[] = [];
-
+  showInfoModal = false;
+  showTips = false;
   newTrip: Trip = { source: '', destination: '' };
   
   // Configuration values
@@ -45,9 +47,12 @@ export class RoutePlotterComponent implements OnInit {
 
   constructor() { }
 
-
   ngOnInit(): void {
     this.updateSVG();
+  }
+
+  toggleInfoModal(): void {
+    this.showInfoModal = !this.showInfoModal;
   }
 
   toggleSettings(): void {
@@ -62,6 +67,10 @@ export class RoutePlotterComponent implements OnInit {
     if (this.showEdit) {
       this.showSettings = false;
     }
+  }
+
+  toggleTips(): void {
+    this.showTips = !this.showTips;
   }
 
   addTrip(): void {

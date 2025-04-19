@@ -1,0 +1,27 @@
+<div class="info-modal">
+  <div class="modal-content">
+    <h3>How Route Plotting Works</h3>
+    
+    <div class="info-section">
+      <h4>Level 1 Routes</h4>
+      <p><strong>Continued Trips:</strong> When destinations are connected (e.g., Bangalore → Chennai, Chennai → Ooty), the routes are plotted as straight lines on Level 1.</p>
+      <p><strong>Non-Continued Trips:</strong> When destinations are not connected (e.g., Bangalore → Chennai, Ooty → Bangalore), the routes are plotted with arrows on Level 1.</p>
+    </div>
+
+    <div class="info-section">
+      <h4>Level 2 Routes</h4>
+      <p>When consecutive trips have the same pickup and drop location, they are plotted on Level 2 to avoid overlapping with other routes.</p>
+    </div>
+
+    <div class="info-section">
+      <h4>Example Scenarios</h4>
+      <ul>
+        <li><strong>Scenario 1:</strong> Bangalore → Chennai, Chennai → Ooty (Level 1, connected)</li>
+        <li><strong>Scenario 2:</strong> Bangalore → Chennai, Ooty → Bangalore (Level 1, with arrows)</li>
+        <li><strong>Scenario 3:</strong> Bangalore → Chennai, Bangalore → Chennai (Level 2)</li>
+      </ul>
+    </div>
+
+    <button class="close-btn" (click)="onClose()">Close</button>
+  </div>
+</div> 

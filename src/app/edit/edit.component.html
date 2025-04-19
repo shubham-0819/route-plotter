@@ -1,25 +1,27 @@
-<div class="edit-container">
-  <h4>Edit Routes</h4>
-  
-  <div class="routes-list">
-    <div class="route-item" *ngFor="let trip of editedTrips; let i = index">
-      <div class="route-info">
-        <span class="route-number">{{i + 1}}</span>
-        <div class="route-details">
-          <span class="source">{{trip.source}}</span>
-          <span class="arrow">→</span>
-          <span class="destination">{{trip.destination}}</span>
+<div class="modal-overlay">
+  <div class="modal-content">
+    <h3>Edit Routes</h3>
+    
+    <div class="routes-list">
+      <div class="route-item" *ngFor="let trip of editedTrips; let i = index">
+        <div class="route-info">
+          <span class="route-number">{{i + 1}}</span>
+          <div class="route-details">
+            <span class="source">{{trip.source}}</span>
+            <span class="arrow">→</span>
+            <span class="destination">{{trip.destination}}</span>
+          </div>
+        </div>
+        
+        <div class="route-actions">
+          <button (click)="deleteTrip(i)" class="delete-btn">X</button>
         </div>
       </div>
-      
-      <div class="route-actions">
-        <button (click)="deleteTrip(i)" class="delete-btn">X</button>
-      </div>
     </div>
-  </div>
 
-  <div class="actions">
-    <button (click)="onClose()" class="close-btn">Close</button>
-    <button (click)="onApply()" class="apply-btn">Apply</button>
+    <div class="actions">
+      <button (click)="onClose()" class="close-btn">Close</button>
+      <button (click)="onApply()" class="apply-btn">Apply</button>
+    </div>
   </div>
 </div> 

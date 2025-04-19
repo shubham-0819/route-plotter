@@ -59,4 +59,9 @@ export class SettingsComponent {
   onClose(): void {
     this.close.emit();
   }
+
+  onApply(): void {
+    this.onSettingsChange();
+    this.close.emit();
+  }
 } 

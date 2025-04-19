@@ -1,44 +1,46 @@
-<div class="settings-container">
-  <h4>Graph Settings</h4>
-  
-  <div class="settings-group">
-    <div class="setting-item">
-      <label>Node Spacing:</label>
-      <input type="number" [(ngModel)]="settings.nodeSpacing" (ngModelChange)="onSettingsChange()">
-    </div>
+<div class="modal-overlay">
+  <div class="modal-content">
+    <h3>Graph Settings</h3>
+    
+    <div class="settings-group">
+      <div class="setting-item">
+        <label>Node Spacing:</label>
+        <input type="number" [(ngModel)]="settings.nodeSpacing" (ngModelChange)="onSettingsChange()">
+      </div>
 
-    <div class="setting-item">
-      <label>Line Stroke Width:</label>
-      <input type="number" [(ngModel)]="settings.lineStrokeWidth" (ngModelChange)="onSettingsChange()">
-    </div>
+      <div class="setting-item">
+        <label>Line Stroke Width:</label>
+        <input type="number" [(ngModel)]="settings.lineStrokeWidth" (ngModelChange)="onSettingsChange()">
+      </div>
 
-    <div class="setting-item">
-      <label>Circle Radius:</label>
-      <input type="number" [(ngModel)]="settings.circleRadius" (ngModelChange)="onSettingsChange()">
-    </div>
+      <div class="setting-item">
+        <label>Circle Radius:</label>
+        <input type="number" [(ngModel)]="settings.circleRadius" (ngModelChange)="onSettingsChange()">
+      </div>
 
-    <div class="setting-item">
-      <label>Gap:</label>
-      <input type="number" [(ngModel)]="settings.gap" (ngModelChange)="onSettingsChange()">
-    </div>
-  </div>
-
-  <div class="colors-section">
-    <h3>Node Colors</h3>
-    <div class="color-input">
-      <input type="color" [(ngModel)]="newColor">
-      <button (click)="addColor()">Add Color</button>
-    </div>
-    <div class="color-list">
-      <div class="color-item" *ngFor="let color of settings.colors; let i = index">
-        <div class="color-preview" [style.background-color]="color"></div>
-        <span>{{color}}</span>
-        <button (click)="removeColor(i)">X</button>
+      <div class="setting-item">
+        <label>Gap:</label>
+        <input type="number" [(ngModel)]="settings.gap" (ngModelChange)="onSettingsChange()">
       </div>
     </div>
-  </div>
 
-  <div class="actions">
-    <button (click)="onClose()" class="close-btn">Close</button>
+    <div class="colors-section">
+      <h4>Node Colors</h4>
+      <div class="color-input">
+        <input type="color" [(ngModel)]="newColor">
+        <button (click)="addColor()">Add Color</button>
+      </div>
+      <div class="color-list">
+        <div class="color-item" *ngFor="let color of settings.colors; let i = index">
+          <div class="color-preview" [style.background-color]="color"></div>
+          <span>{{color}}</span>
+          <button (click)="removeColor(i)">X</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button (click)="onClose()" class="close-btn">Close</button>
+    </div>
   </div>
 </div> 

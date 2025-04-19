@@ -1,66 +1,110 @@
 <div class="route-plotter-container">
   <div class="main-content">
     <div class="input-section">
-      <h2>Add New Route</h2>
-      <div class="input-group">
-        <input 
-          type="text" 
-          [(ngModel)]="newTrip.source" 
-          placeholder="Source" 
-          class="form-control"
-        >
-        <input 
-          type="text" 
-          [(ngModel)]="newTrip.destination" 
-          placeholder="Destination" 
-          class="form-control"
-        >
-        <button 
-          (click)="addTrip()" 
-          class="btn btn-primary"
-          [disabled]="!newTrip.source || !newTrip.destination"
-        >
-          Add Route
-        </button>
-
-        <button *ngIf="trips.length > 0" (click)="clearTrips()" class="btn btn-secondary">
-          Clear
-        </button>
-
-        <button *ngIf="trips.length > 0" (click)="toggleEdit()" class="btn btn-secondary">
-          Edit
-        </button>
-
-        <button *ngIf="trips.length > 0" (click)="toggleSettings()" class="btn btn-secondary">
-          Settings
-        </button>
-
-        <button *ngIf="trips.length > 0" (click)="downloadSVG()" class="btn btn-success">
-          Download SVG
-        </button>
+      <div class="heading-with-info">
+        <h2>Add New Route</h2>
+        <div class="header-actions">
+          <i class="fas fa-info-circle info-icon" (click)="toggleInfoModal()" title="Click for detailed information"></i>
+          <i class="fas fa-question-circle help-icon" (click)="toggleTips()" title="Show/hide tips"></i>
+        </div>
       </div>
-      
+      <div class="description">
+        <p>Add your travel routes by entering source and destination cities. The routes will be plotted automatically with different levels based on their connections.</p>
+        <div class="tips" *ngIf="showTips">
+          <i class="fas fa-lightbulb tip-icon"></i>
+          <span>Tips: 
+            <ul>
+              <li>City names must be at least 3 letters long</li>
+              <li>Connected routes (e.g., City A → City B, City B → City C) will be shown on Level 1</li>
+              <li>Repeated routes will be elevated to Level 2</li>
+            </ul>
+          </span>
+        </div>
+      </div>
+      <div class="input-container">
+        <div class="input-fields">
+          <div class="input-field">
+            <label for="source">Source City</label>
+            <input 
+              id="source"
+              type="text" 
+              [(ngModel)]="newTrip.source" 
+              placeholder="Enter source city" 
+              class="form-control"
+              [class.invalid]="newTrip.source && newTrip.source.length < 3"
+            >
+            <small class="error-text" *ngIf="newTrip.source && newTrip.source.length < 3">
+              City name must be at least 3 letters
+            </small>
+          </div>
+          <div class="input-field">
+            <label for="destination">Destination City</label>
+            <input 
+              id="destination"
+              type="text" 
+              [(ngModel)]="newTrip.destination" 
+              placeholder="Enter destination city" 
+              class="form-control"
+              [class.invalid]="newTrip.destination && newTrip.destination.length < 3"
+            >
+            <small class="error-text" *ngIf="newTrip.destination && newTrip.destination.length < 3">
+              City name must be at least 3 letters
+            </small>
+          </div>
+          <button 
+            (click)="addTrip()" 
+            class="btn btn-primary add-btn"
+            [disabled]="!newTrip.source || !newTrip.destination || newTrip.source.length < 3 || newTrip.destination.length < 3"
+            title="Add this route to the plot"
+          >
+            <i class="fas fa-plus"></i> Add Route
+          </button>
+        </div>
+
+        <div class="action-buttons" *ngIf="trips.length > 0">
+          <button (click)="clearTrips()" class="btn btn-secondary" title="Clear all routes">
+            <i class="fas fa-trash"></i> Clear
+          </button>
+
+          <button (click)="toggleEdit()" class="btn btn-secondary" title="Edit or remove routes">
+            <i class="fas fa-edit"></i> Edit
+          </button>
+
+          <button (click)="toggleSettings()" class="btn btn-secondary" title="Adjust graph settings">
+            <i class="fas fa-cog"></i> Settings
+          </button>
+
+          <button (click)="downloadSVG()" class="btn btn-success" title="Download the route plot">
+            <i class="fas fa-download"></i> Download SVG
+          </button>
+        </div>
+      </div>
     </div>
-    
-   
 
-    <div id="route-svg" class="svg-container"></div>
+    <div id="route-svg" class="svg-container">
+      <div *ngIf="trips.length === 0" class="empty-state">
+        <i class="fas fa-route empty-icon"></i>
+        <p>Add your first route to start plotting!</p>
+      </div>
+    </div>
   </div>
 
-  <div class="side-panel" *ngIf="showSettings || showEdit">
+  <app-info-modal
+    *ngIf="showInfoModal"
+    (close)="toggleInfoModal()"
+  ></app-info-modal>
 
-    <app-settings 
-      *ngIf="showSettings"
-      (settingsChange)="onSettingsChange($event)"
-      (close)="toggleSettings()"
-    ></app-settings>
-    
-    <app-edit
-      *ngIf="showEdit"
-      [trips]="trips"
-      (tripsChange)="onTripsChange($event)"
-      (applyChanges)="onApplyChanges()"
-      (close)="toggleEdit()"
-    ></app-edit>
-  </div>
+  <app-settings 
+    *ngIf="showSettings"
+    (settingsChange)="onSettingsChange($event)"
+    (close)="toggleSettings()"
+  ></app-settings>
+  
+  <app-edit
+    *ngIf="showEdit"
+    [trips]="trips"
+    (tripsChange)="onTripsChange($event)"
+    (applyChanges)="onApplyChanges()"
+    (close)="toggleEdit()"
+  ></app-edit>
 </div> 
